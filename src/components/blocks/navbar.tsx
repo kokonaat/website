@@ -1,8 +1,6 @@
-"use client"
+'use client'
 
-import { useState } from 'react'
-
-import Link from 'next/link'
+import { useState, useTransition } from 'react'
 
 import { Menu, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -10,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import { LanguageSwitch } from '@/components/language-switch'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
 const APP_URL = 'https://app.kokonaat.com'
@@ -17,6 +16,7 @@ const APP_URL = 'https://app.kokonaat.com'
 export function Navbar() {
   const t = useTranslations('nav')
   const [open, setOpen] = useState(false)
+  const [pending, startTransition] = useTransition()
 
   const links = [
     { label: t('howItWorks'), href: '#how-it-works' },
@@ -26,6 +26,10 @@ export function Navbar() {
     { label: t('faq'), href: '#faq' },
     { label: t('contact'), href: '#contact' },
   ]
+
+  const closeMenu = () => {
+    startTransition(() => setOpen(false))
+  }
 
   return (
     <header className="fixed inset-x-4 top-4 z-50 mx-auto max-w-screen-xl lg:top-6">
@@ -40,13 +44,13 @@ export function Navbar() {
 
           <div className="hidden items-center gap-1 lg:flex">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
                 className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </div>
 
@@ -65,6 +69,7 @@ export function Navbar() {
               className="lg:hidden"
               onClick={() => setOpen(!open)}
               aria-label="Menu"
+              disabled={pending}
             >
               {open ? <X className="size-4" /> : <Menu className="size-4" />}
             </Button>
@@ -75,14 +80,14 @@ export function Navbar() {
           <div className="border-t border-border lg:hidden">
             <div className="flex flex-col px-4 py-2">
               {links.map((link) => (
-                <Link
+                <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   className="hover:bg-muted border-b border-border px-2 py-3 text-sm font-medium last:border-b-0"
                 >
                   {link.label}
-                </Link>
+                </a>
               ))}
               <div className={cn('mt-2 flex flex-col gap-2 border-t border-border pt-3')}>
                 <Button variant="outline" asChild>

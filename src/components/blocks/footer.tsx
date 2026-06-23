@@ -1,16 +1,14 @@
-"use client"
-
 import Link from 'next/link'
 
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import { Button } from '@/components/ui/button'
 
 const APP_URL = 'https://app.kokonaat.com'
 
-export function Footer() {
-  const t = useTranslations('footer')
-  const tNav = useTranslations('nav')
+export async function Footer() {
+  const t = await getTranslations('footer')
+  const tNav = await getTranslations('nav')
   const year = new Date().getFullYear()
 
   const productLinks = [

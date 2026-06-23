@@ -1,12 +1,10 @@
-'use client'
-
 import { HelpCircle } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 const faqKeys = ['1', '2', '3', '4', '5'] as const
 
-export function FAQ() {
-  const t = useTranslations('faq')
+export async function FAQ() {
+  const t = await getTranslations('faq')
 
   return (
     <section id="faq" className="border-y bg-muted/30 py-16 lg:py-24">

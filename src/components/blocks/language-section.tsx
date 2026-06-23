@@ -1,10 +1,8 @@
-'use client'
-
 import { Languages } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-export function LanguageSection() {
-  const t = useTranslations('languageSection')
+export async function LanguageSection() {
+  const t = await getTranslations('languageSection')
 
   return (
     <section className="py-14 lg:py-16">

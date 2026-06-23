@@ -2,12 +2,11 @@
 
 import { useState, useTransition } from 'react'
 
-import { useRouter } from 'next/navigation'
-
 import { Languages, Check, ChevronDown } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 
 import { Button } from '@/components/ui/button'
+import { usePathname, useRouter } from '@/i18n/navigation'
 import { type Locale } from '@/i18n/routing'
 import { cn } from '@/lib/utils'
 
@@ -20,6 +19,7 @@ export function LanguageSwitch() {
   const locale = useLocale() as Locale
   const t = useTranslations('language')
   const router = useRouter()
+  const pathname = usePathname()
   const [open, setOpen] = useState(false)
   const [pending, startTransition] = useTransition()
 
@@ -29,10 +29,8 @@ export function LanguageSwitch() {
       return
     }
 
-    document.cookie = `lang=${next}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`
-
     startTransition(() => {
-      router.refresh()
+      router.replace(pathname, { locale: next })
       setOpen(false)
     })
   }

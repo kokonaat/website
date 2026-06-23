@@ -1,11 +1,9 @@
-'use client'
-
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 const cardKeys = ['transactions', 'inventory', 'ledgers', 'reports'] as const
 
-export function Operations() {
-  const t = useTranslations('operations')
+export async function Operations() {
+  const t = await getTranslations('operations')
 
   return (
     <section id="operations" className="py-16 lg:py-24">
@@ -23,7 +21,10 @@ export function Operations() {
                 <h3 className="text-lg font-semibold">{t(`cards.${key}.title`)}</h3>
                 <p className="text-muted-foreground mt-2 text-sm">{t(`cards.${key}.description`)}</p>
 
-                <div className="box-muted mt-5 grid divide-x divide-border/80 overflow-hidden" style={{ gridTemplateColumns: `repeat(${flow.length}, minmax(0, 1fr))` }}>
+                <div
+                  className="box-muted mt-5 grid divide-x divide-border/80 overflow-hidden"
+                  style={{ gridTemplateColumns: `repeat(${flow.length}, minmax(0, 1fr))` }}
+                >
                   {flow.map((step) => (
                     <div key={step} className="px-2 py-3 text-center text-xs font-medium">
                       {step}

@@ -1,26 +1,25 @@
-'use client'
+import { ArrowRight } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
-import {
-  ArrowRight,
-  BarChart3,
-  FileSpreadsheet,
-  Package,
-  Store,
-  UserPlus,
-} from 'lucide-react'
-import { useTranslations } from 'next-intl'
-
+import { HowItWorksFlow } from '@/components/blocks/how-it-works-flow'
 import { Button } from '@/components/ui/button'
 
 const APP_URL = 'https://app.kokonaat.com'
 
-const stepIcons = [UserPlus, Store, Package, BarChart3, FileSpreadsheet]
-const steps = ['1', '2', '3', '4', '5'] as const
+const stepKeys = ['1', '2', '3', '4', '5'] as const
 const stripKeys = ['sale', 'stock', 'ledger', 'report'] as const
 
-export function Hero() {
-  const t = useTranslations('hero')
-  const tFlow = useTranslations('howItWorks')
+export async function Hero() {
+  const t = await getTranslations('hero')
+  const tFlow = await getTranslations('howItWorks')
+
+  const steps = stepKeys.map((key, i) => ({
+    number: String(i + 1).padStart(2, '0'),
+    title: tFlow(`steps.${key}.title`),
+    description: tFlow(`steps.${key}.description`),
+  }))
+
+  const operationsStrip = stripKeys.map((key) => t(`operationsStrip.${key}`))
 
   return (
     <section className="overflow-x-hidden pt-28 pb-16 lg:pt-36 lg:pb-24" id="hero">
@@ -48,75 +47,12 @@ export function Hero() {
           </div>
         </div>
 
-        <div id="how-it-works" className="mx-auto mt-14 max-w-5xl scroll-mt-28 lg:mt-16">
-          <p className="text-muted-foreground mb-3 text-xs font-semibold uppercase tracking-wider">
-            {tFlow('title')}
-          </p>
-
-          <div className="box overflow-hidden">
-            <div className="hidden lg:grid lg:grid-cols-5 lg:divide-x lg:divide-border">
-              {steps.map((step, i) => {
-                const Icon = stepIcons[i]
-                return (
-                  <div
-                    key={step}
-                    className="bg-muted/20 flex flex-col items-center p-5 text-center"
-                  >
-                    <div className="bg-muted flex size-12 items-center justify-center">
-                      <Icon className="text-foreground size-5" />
-                    </div>
-                    <span className="text-muted-foreground mt-3 text-xs font-semibold">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="mt-2 text-sm font-semibold leading-snug">
-                      {tFlow(`steps.${step}.title`)}
-                    </h3>
-                    <p className="text-muted-foreground mt-1 text-xs leading-relaxed">
-                      {tFlow(`steps.${step}.description`)}
-                    </p>
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className="divide-y divide-border lg:hidden">
-              {steps.map((step, i) => {
-                const Icon = stepIcons[i]
-                return (
-                  <div key={step} className="flex gap-4 bg-muted/20 p-5">
-                    <div className="bg-muted flex size-12 shrink-0 items-center justify-center">
-                      <Icon className="text-foreground size-5" />
-                    </div>
-                    <div>
-                      <p className="text-muted-foreground text-xs font-semibold">
-                        {String(i + 1).padStart(2, '0')} · {tFlow(`steps.${step}.title`)}
-                      </p>
-                      <p className="text-muted-foreground mt-1 text-sm">
-                        {tFlow(`steps.${step}.description`)}
-                      </p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            <div className="border-t border-border bg-muted/20 p-5">
-              <p className="text-muted-foreground mb-3 text-center text-xs font-semibold uppercase tracking-wider">
-                {t('operationsStripLabel')}
-              </p>
-              <div className="box-muted grid grid-cols-2 divide-x divide-y divide-border/80 sm:grid-cols-4 sm:divide-y-0">
-                {stripKeys.map((key) => (
-                  <div
-                    key={key}
-                    className="flex items-center justify-center px-3 py-3 text-center text-xs font-medium sm:text-sm"
-                  >
-                    {t(`operationsStrip.${key}`)}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+        <HowItWorksFlow
+          title={tFlow('title')}
+          steps={steps}
+          operationsStripLabel={t('operationsStripLabel')}
+          operationsStrip={operationsStrip}
+        />
       </div>
     </section>
   )

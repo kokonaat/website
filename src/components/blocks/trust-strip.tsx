@@ -1,12 +1,10 @@
-'use client'
-
 import { Globe, Languages, FileSpreadsheet, Store } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 const badgeIcons = [Languages, Store, FileSpreadsheet, Globe]
 
-export function TrustStrip() {
-  const t = useTranslations('trust')
+export async function TrustStrip() {
+  const t = await getTranslations('trust')
   const badgeKeys = ['bilingual', 'multiShop', 'reports', 'ledger'] as const
 
   return (

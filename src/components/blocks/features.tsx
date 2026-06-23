@@ -1,5 +1,3 @@
-'use client'
-
 import {
   BarChart3,
   LayoutDashboard,
@@ -8,9 +6,9 @@ import {
   Users,
   ClipboardList,
 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-import { ModulePreview } from '@/components/module-preview'
+import { FeaturesPreviews } from '@/components/blocks/features-previews'
 
 const moduleIcons = {
   dashboard: LayoutDashboard,
@@ -39,8 +37,8 @@ const moduleKeys = [
   'reports',
 ] as const
 
-export function Features() {
-  const t = useTranslations('features')
+export async function Features() {
+  const t = await getTranslations('features')
 
   return (
     <section id="features" className="border-y bg-muted/30 py-16 lg:py-24">
@@ -63,9 +61,7 @@ export function Features() {
                 </div>
                 <h3 className="mt-4 font-semibold">{t(`modules.${key}.title`)}</h3>
                 <p className="text-muted-foreground mt-1 text-sm">{t(`modules.${key}.description`)}</p>
-                <div className="mt-4 overflow-hidden border border-border">
-                  <ModulePreview variant={previewVariants[key]} />
-                </div>
+                <FeaturesPreviews variant={previewVariants[key]} />
               </div>
             )
           })}

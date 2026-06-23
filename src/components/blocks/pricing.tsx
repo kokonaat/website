@@ -1,14 +1,12 @@
-'use client'
-
 import { Sparkles } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 import { Button } from '@/components/ui/button'
 
 const APP_URL = 'https://app.kokonaat.com'
 
-export function Pricing() {
-  const t = useTranslations('pricing')
+export async function Pricing() {
+  const t = await getTranslations('pricing')
 
   return (
     <section id="pricing" className="py-16 lg:py-24">

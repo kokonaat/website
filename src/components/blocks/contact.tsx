@@ -1,11 +1,18 @@
-'use client'
+import dynamic from 'next/dynamic'
 
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
-import { ContactForm } from '@/components/blocks/contact-form'
+const ContactForm = dynamic(
+  () => import('@/components/blocks/contact-form').then((mod) => mod.ContactForm),
+  {
+    loading: () => (
+      <div className="box min-h-[320px] animate-pulse bg-muted/30 p-6" aria-hidden />
+    ),
+  },
+)
 
-export function Contact() {
-  const t = useTranslations('contact')
+export async function Contact() {
+  const t = await getTranslations('contact')
 
   return (
     <section id="contact" className="py-16 lg:py-24">
