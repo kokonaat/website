@@ -48,23 +48,18 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     icons: {
-      icon: [
-        { url: '/favicon/favicon.ico', sizes: '48x48' },
-        { url: '/favicon/favicon.svg', type: 'image/svg+xml' },
-      ],
-      apple: [{ url: '/favicon/apple-touch-icon.png', sizes: '180x180' }],
+      icon: [{ url: '/favicon/favicon.svg', type: 'image/svg+xml' }],
+      apple: [{ url: '/logo.svg', sizes: '180x180', type: 'image/svg+xml' }],
     },
     openGraph: {
       title: t('title'),
       description: t('description'),
       siteName: 'Kokonaat',
-      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Kokonaat' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('title'),
       description: t('description'),
-      images: ['/og-image.jpg'],
     },
   }
 }
