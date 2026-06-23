@@ -1,119 +1,35 @@
-import Link from "next/link";
+'use client'
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
+import { HelpCircle } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-const categories = [
-  {
-    title: "Support",
-    questions: [
-      {
-        question: "How do I update my account without breaking my laptop?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Is support free, or do I need to Google everything?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Are you going to be subsumed by AI?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-    ],
-  },
-  {
-    title: "Your account",
-    questions: [
-      {
-        question: "Is support free, or do I need to Google everything?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Are you going to be subsumed by AI?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-    ],
-  },
-  {
-    title: "Other questions",
-    questions: [
-      {
-        question: "Is support free, or do I need to Google everything?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-      {
-        question: "Are you going to be subsumed by AI?",
-        answer:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus voluptates deserunt officia temporibus dignissimos.",
-      },
-    ],
-  },
-];
+const faqKeys = ['1', '2', '3', '4', '5'] as const
 
-export const FAQ = ({
-  headerTag = "h2",
-  className,
-  className2,
-}: {
-  headerTag?: "h1" | "h2";
-  className?: string;
-  className2?: string;
-}) => {
+export function FAQ() {
+  const t = useTranslations('faq')
+
   return (
-    <section className={cn("py-28 lg:py-32", className)} id="faq">
-      <div className="container max-w-5xl">
-        <div className={cn("mx-auto grid gap-16 lg:grid-cols-2", className2)}>
-          <div className="space-y-4">
-            {headerTag === "h1" ? (
-              <h1 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-                Got Questions?
-              </h1>
-            ) : (
-              <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-                Got Questions?
-              </h2>
-            )}
-            <p className="text-muted-foreground max-w-md leading-snug lg:mx-auto">
-              If you can't find what you're looking for,{" "}
-              <Link href="/contact" className="underline underline-offset-4">
-                get in touch
-              </Link>
-              .
-            </p>
-          </div>
+    <section id="faq" className="border-y bg-muted/30 py-16 lg:py-24">
+      <div className="container max-w-screen-lg">
+        <div className="section-heading">
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('title')}</h2>
+          <p className="text-muted-foreground mt-3">{t('subtitle')}</p>
+        </div>
 
-          <div className="grid gap-6 text-start">
-            {categories.map((category, categoryIndex) => (
-              <div key={category.title} className="">
-                <h3 className="text-muted-foreground border-b py-4">
-                  {category.title}
-                </h3>
-                <Accordion type="single" collapsible className="w-full">
-                  {category.questions.map((item, i) => (
-                    <AccordionItem key={i} value={`${categoryIndex}-${i}`}>
-                      <AccordionTrigger>{item.question}</AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground">
-                        {item.answer}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {faqKeys.map((key) => (
+            <div key={key} className="box p-6">
+              <div className="bg-muted flex size-10 items-center justify-center">
+                <HelpCircle className="size-5" />
               </div>
-            ))}
-          </div>
+              <h3 className="mt-4 font-semibold">{t(`items.${key}.question`)}</h3>
+              <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                {t(`items.${key}.answer`)}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

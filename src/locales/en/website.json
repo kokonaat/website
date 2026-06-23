@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "Kokonaat — Retail Management for Shop Owners",
+    "description": "Manage transactions, inventory, expenses, customer and vendor ledgers, and reports — in English or Bengali."
+  },
+  "language": {
+    "toggle": "Toggle language",
+    "english": "English",
+    "bengali": "বাংলা"
+  },
+  "nav": {
+    "howItWorks": "How It Works",
+    "features": "Features",
+    "operations": "Operations",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "login": "Log in",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "title": "Less Guesswork. More Growth.",
+    "subtitle": "From transactions to balance sheets — stay organized and in control of your shop.",
+    "getStarted": "Get Started",
+    "startFree": "Start for free",
+    "processFlowLabel": "How it works",
+    "operationsStripLabel": "Daily shop operations",
+    "operationsStrip": {
+      "sale": "Record sale",
+      "stock": "Update stock",
+      "ledger": "Track balances",
+      "report": "Export report"
+    },
+    "features": {
+      "reporting": {
+        "title": "Advanced Reporting & Analytics",
+        "description": "Generate accurate transaction, inventory, and financial reports."
+      },
+      "inventory": {
+        "title": "Inventory Control",
+        "description": "Monitor stock levels, movements, and item details with precision."
+      },
+      "expense": {
+        "title": "Expense Oversight",
+        "description": "Track operational expenses and maintain cost visibility."
+      },
+      "partners": {
+        "title": "Customer & Vendor Insights",
+        "description": "Analyze transactions, balances, and relationships in one unified view."
+      }
+    }
+  },
+  "trust": {
+    "title": "Built for retail shop owners in Bangladesh",
+    "badges": {
+      "bilingual": "English & Bengali",
+      "multiShop": "Multi-shop support",
+      "reports": "PDF & Excel exports",
+      "ledger": "Customer & vendor ledgers"
+    }
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Get your shop running on Kokonaat in five simple steps.",
+    "steps": {
+      "1": {
+        "title": "Create your account",
+        "description": "Sign up in minutes and secure your workspace."
+      },
+      "2": {
+        "title": "Set up your shop",
+        "description": "Add your shop name and address to get started."
+      },
+      "3": {
+        "title": "Record transactions",
+        "description": "Log sales, purchases, payments, and receivables."
+      },
+      "4": {
+        "title": "Track stock automatically",
+        "description": "Inventory updates with every sale and purchase."
+      },
+      "5": {
+        "title": "View ledgers and export reports",
+        "description": "Customer and vendor balances, PDF/Excel in Bengali or English."
+      }
+    }
+  },
+  "features": {
+    "title": "Everything your shop needs",
+    "subtitle": "Six core modules designed for daily retail operations.",
+    "modules": {
+      "dashboard": {
+        "title": "Dashboard",
+        "description": "Financial pulse, sales trends, and inventory health at a glance."
+      },
+      "transactions": {
+        "title": "Transaction Board",
+        "description": "Sales, purchases, payments, and receivables in one place."
+      },
+      "inventory": {
+        "title": "Inventory",
+        "description": "Stock levels, tracking history, and last price per item."
+      },
+      "expense": {
+        "title": "Expense",
+        "description": "Daily and monthly expenses with categorized tracking."
+      },
+      "partners": {
+        "title": "Customers & Vendors",
+        "description": "Profiles, transaction history, and ledger downloads."
+      },
+      "reports": {
+        "title": "Reports",
+        "description": "Balance sheet, stock track, expense, and transaction reports."
+      }
+    }
+  },
+  "operations": {
+    "title": "How operations flow",
+    "subtitle": "See how Kokonaat connects your daily shop activities.",
+    "cards": {
+      "transactions": {
+        "title": "Transactions",
+        "description": "One board for sales, purchases, payments, and receivables.",
+        "flow": ["Sale", "Stock update", "Balance updated"]
+      },
+      "inventory": {
+        "title": "Inventory",
+        "description": "Real-time stock in and out with tracking history.",
+        "flow": ["Purchase", "Stock in", "Sale", "Stock out"]
+      },
+      "ledgers": {
+        "title": "Ledgers",
+        "description": "Customer receivables (পাওনা) and vendor payables (দেনা) in one view.",
+        "flow": ["Transaction", "Balance", "Collect / Pay"]
+      },
+      "reports": {
+        "title": "Reports & Export",
+        "description": "Generate reports and export PDF/Excel with Bengali labels.",
+        "flow": ["Select report", "Filter dates", "Download"]
+      }
+    }
+  },
+  "languageSection": {
+    "title": "Works in English and Bengali",
+    "description": "Switch language anytime. Reports, labels, and the admin app support full Bengali — including PDF exports with Bengali fonts.",
+    "badge": "বাংলা + English"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Simple plans for growing shops.",
+    "comingSoon": "Coming Soon",
+    "comingSoonDescription": "We're preparing flexible plans for shop owners. Stay tuned — or start using Kokonaat for free today.",
+    "cta": "Start for free"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Common questions about Kokonaat.",
+    "items": {
+      "1": {
+        "question": "Is Kokonaat available in Bengali?",
+        "answer": "Yes. The admin app and PDF/Excel exports support full Bengali. Switch language from the header at any time."
+      },
+      "2": {
+        "question": "Can I manage multiple shops?",
+        "answer": "Yes. Create multiple shops under one account and switch between them from the sidebar."
+      },
+      "3": {
+        "question": "What reports can I export?",
+        "answer": "Customer ledger, vendor ledger, transaction report, stock report, stock track, expense report, and balance sheet — as PDF or Excel."
+      },
+      "4": {
+        "question": "How do customer and vendor balances work?",
+        "answer": "Sales and receivables track what customers owe you (পাওনা). Purchases and payments track what you owe vendors (দেনা)."
+      },
+      "5": {
+        "question": "Is there a free plan?",
+        "answer": "You can sign up and start using Kokonaat for free. Paid plans are coming soon."
+      }
+    }
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Questions about Kokonaat? We'd love to hear from you.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "message": "Message",
+      "messagePlaceholder": "How can we help?",
+      "submit": "Send message",
+      "success": "Message sent! We'll get back to you soon.",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "footer": {
+    "description": "Retail management for shop owners — transactions, inventory, ledgers, and reports.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "copyright": "© {year} Kokonaat. All rights reserved.",
+    "links": {
+      "howItWorks": "How It Works",
+      "features": "Features",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    }
+  }
+}

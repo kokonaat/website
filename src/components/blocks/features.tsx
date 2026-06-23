@@ -1,96 +1,76 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client'
 
-import { ChevronRight } from "lucide-react";
+import {
+  BarChart3,
+  LayoutDashboard,
+  Package,
+  Receipt,
+  Users,
+  ClipboardList,
+} from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { DashedLine } from "../dashed-line";
+import { ModulePreview } from '@/components/module-preview'
 
-import { Card, CardContent } from "@/components/ui/card";
+const moduleIcons = {
+  dashboard: LayoutDashboard,
+  transactions: Package,
+  inventory: ClipboardList,
+  expense: Receipt,
+  partners: Users,
+  reports: BarChart3,
+}
 
-const items = [
-  {
-    title: "Purpose-built for product development",
-    image: "/features/triage-card.svg",
-  },
-  {
-    title: "Manage projects end-to-end",
-    image: "/features/cycle-card.svg",
-  },
-  {
-    title: "Build momentum and healthy habits",
-    image: "/features/overview-card.svg",
-  },
-];
+const previewVariants = {
+  dashboard: 'dashboard',
+  transactions: 'transactions',
+  inventory: 'inventory',
+  expense: 'dashboard',
+  partners: 'transactions',
+  reports: 'reports',
+} as const
 
-export const Features = () => {
+const moduleKeys = [
+  'dashboard',
+  'transactions',
+  'inventory',
+  'expense',
+  'partners',
+  'reports',
+] as const
+
+export function Features() {
+  const t = useTranslations('features')
+
   return (
-    <section id="feature-modern-teams" className="pb-28 lg:pb-32">
+    <section id="features" className="border-y bg-muted/30 py-16 lg:py-24">
       <div className="container">
-        {/* Top dashed line with text */}
-        <div className="relative flex items-center justify-center">
-          <DashedLine className="text-muted-foreground" />
-          <span className="bg-muted text-muted-foreground absolute px-3 font-mono text-sm font-medium tracking-wide max-md:hidden">
-            MEASURE TWICE. CUT ONCE.
-          </span>
+        <div className="section-heading">
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">{t('title')}</h2>
+          <p className="text-muted-foreground mt-3">{t('subtitle')}</p>
         </div>
 
-        {/* Content */}
-        <div className="mx-auto mt-10 grid max-w-4xl items-center gap-3 md:gap-0 lg:mt-24 lg:grid-cols-2">
-          <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Made for modern product teams
-          </h2>
-          <p className="text-muted-foreground leading-snug">
-            Mainline is built on the habits that make the best product teams
-            successful: staying focused, moving quickly, and always aiming for
-            high-quality work.
-          </p>
-        </div>
-
-        {/* Features Card */}
-        <Card className="mt-8 rounded-3xl md:mt-12 lg:mt-20">
-          <CardContent className="flex p-0 max-md:flex-col">
-            {items.map((item, i) => (
-              <div key={i} className="flex flex-1 max-md:flex-col">
-                <div className="flex-1 p-4 pe-0! md:p-6">
-                  <div className="relative aspect-[1.28/1] overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={`${item.title} interface`}
-                      fill
-                      className="object-cover object-left-top ps-4 pt-2"
-                    />
-                    <div className="from-background absolute inset-0 z-10 bg-linear-to-t via-transparent to-transparent" />
-                  </div>
-
-                  <Link
-                    href="#"
-                    className={
-                      "group flex items-center justify-between gap-4 pe-4 pt-4 md:pe-6 md:pt-6"
-                    }
-                  >
-                    <h3 className="font-display max-w-60 text-2xl leading-tight font-bold tracking-tight">
-                      {item.title}
-                    </h3>
-                    <div className="rounded-full border p-2">
-                      <ChevronRight className="size-6 transition-transform group-hover:translate-x-1 lg:size-9" />
-                    </div>
-                  </Link>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {moduleKeys.map((key) => {
+            const Icon = moduleIcons[key]
+            return (
+              <div
+                key={key}
+                className="box flex flex-col p-5 transition-shadow hover:shadow-md"
+              >
+                <div className="bg-muted flex size-11 items-center justify-center">
+                  <Icon className="size-5" />
                 </div>
-                {i < items.length - 1 && (
-                  <div className="relative hidden md:block">
-                    <DashedLine orientation="vertical" />
-                  </div>
-                )}
-                {i < items.length - 1 && (
-                  <div className="relative block md:hidden">
-                    <DashedLine orientation="horizontal" />
-                  </div>
-                )}
+                <h3 className="mt-4 font-semibold">{t(`modules.${key}.title`)}</h3>
+                <p className="text-muted-foreground mt-1 text-sm">{t(`modules.${key}.description`)}</p>
+                <div className="mt-4 overflow-hidden border border-border">
+                  <ModulePreview variant={previewVariants[key]} />
+                </div>
               </div>
-            ))}
-          </CardContent>
-        </Card>
+            )
+          })}
+        </div>
       </div>
     </section>
-  );
-};
+  )
+}

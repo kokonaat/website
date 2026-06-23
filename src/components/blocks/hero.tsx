@@ -1,115 +1,123 @@
-import Image from "next/image";
+'use client'
 
 import {
   ArrowRight,
-  Blend,
-  ChartNoAxesColumn,
-  CircleDot,
-  Diamond,
-} from "lucide-react";
+  BarChart3,
+  FileSpreadsheet,
+  Package,
+  Store,
+  UserPlus,
+} from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
-import { DashedLine } from "@/components/dashed-line";
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 
-const features = [
-  {
-    title: "Advanced Reporting & Analytics",
-    description: "Generate accurate transaction, inventory, and financial reports.",
-    icon: CircleDot,
-  },
-  {
-    title: "Inventory Control",
-    description: "Monitor stock levels, movements, and item details with precision.",
-    icon: Blend,
-  },
-  {
-    title: "Expense Oversight",
-    description: "Track operational expenses and maintain cost visibility.",
-    icon: Diamond,
-  },
-  {
-    title: "Customer & Vendor Insights",
-    description: "Analyze transactions, balances, and relationships in one unified view.",
-    icon: ChartNoAxesColumn,
-  },
-];
+const APP_URL = 'https://app.kokonaat.com'
 
-export const Hero = () => {
+const stepIcons = [UserPlus, Store, Package, BarChart3, FileSpreadsheet]
+const steps = ['1', '2', '3', '4', '5'] as const
+const stripKeys = ['sale', 'stock', 'ledger', 'report'] as const
+
+export function Hero() {
+  const t = useTranslations('hero')
+  const tFlow = useTranslations('howItWorks')
+
   return (
-    <section className="py-28 lg:py-32 lg:pt-44">
-      <div className="container flex flex-col justify-between gap-8 md:gap-14 lg:flex-row lg:gap-20">
-        {/* Left side - Main content */}
-        <div className="flex-1">
-          <h1 className="text-foreground max-w-160 text-3xl tracking-tight md:text-4xl lg:text-5xl xl:whitespace-nowrap">
-            Less Guesswork. More Growth. 🚀
+    <section className="overflow-x-hidden pt-28 pb-16 lg:pt-36 lg:pb-24" id="hero">
+      <div className="container">
+        <div className="mx-auto max-w-3xl text-center lg:max-w-4xl">
+          <span className="bg-foreground text-background inline-flex items-center px-3 py-1 text-xs font-semibold uppercase tracking-wider">
+            {t('processFlowLabel')}
+          </span>
+          <h1 className="mt-4 text-3xl tracking-tight md:text-4xl lg:text-5xl lg:leading-tight">
+            {t('title')}
           </h1>
-
-          <p className="text-muted-foreground text-1xl mt-5 md:text-3xl">
-            From transactions to balance sheets—stay organized and in control.
+          <p className="text-muted-foreground mx-auto mt-5 max-w-2xl text-lg md:text-xl">
+            {t('subtitle')}
           </p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
-            <Button asChild>
-              <a href="#hero-image">
-                Get Started
-              </a>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Button size="lg" asChild>
+              <a href={`${APP_URL}/sign-up`}>{t('getStarted')}</a>
             </Button>
-            <Button
-              variant="outline"
-              className="from-background h-auto gap-2 bg-linear-to-r to-transparent shadow-md"
-              asChild
-            >
-              <a
-                href="https://app.kokonaat.com"
-                className="max-w-56 truncate text-start md:max-w-none"
-              >
-                Start for free
-                <ArrowRight className="stroke-3" />
+            <Button size="lg" variant="outline" asChild>
+              <a href={`${APP_URL}/sign-in`} className="gap-2">
+                {t('startFree')}
+                <ArrowRight className="size-4" />
               </a>
             </Button>
           </div>
         </div>
 
-        {/* Right side - Features */}
-        <div className="relative flex flex-1 flex-col justify-center space-y-5 max-lg:pt-10 lg:pl-10">
-          <DashedLine
-            orientation="vertical"
-            className="absolute top-0 left-0 max-lg:hidden"
-          />
-          <DashedLine
-            orientation="horizontal"
-            className="absolute top-0 lg:hidden"
-          />
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div key={feature.title} className="flex gap-2.5 lg:gap-5">
-                <Icon className="text-foreground mt-1 size-4 shrink-0 lg:size-5" />
-                <div>
-                  <h2 className="font-text text-foreground font-semibold">
-                    {feature.title}
-                  </h2>
-                  <p className="text-muted-foreground max-w-76 text-sm">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+        <div id="how-it-works" className="mx-auto mt-14 max-w-5xl scroll-mt-28 lg:mt-16">
+          <p className="text-muted-foreground mb-3 text-xs font-semibold uppercase tracking-wider">
+            {tFlow('title')}
+          </p>
 
-      <div className="mt-12 w-full px-4 md:mt-20 md:px-6 lg:mt-24 lg:px-8" id="hero-image">
-        <div className="overflow-hidden rounded-2xl shadow-lg">
-          <Image
-            src="/hero.webp"
-            alt="hero"
-            width={1920}
-            height={1080}
-            className="h-auto w-full"
-          />
+          <div className="box overflow-hidden">
+            <div className="hidden lg:grid lg:grid-cols-5 lg:divide-x lg:divide-border">
+              {steps.map((step, i) => {
+                const Icon = stepIcons[i]
+                return (
+                  <div
+                    key={step}
+                    className="bg-muted/20 flex flex-col items-center p-5 text-center"
+                  >
+                    <div className="bg-muted flex size-12 items-center justify-center">
+                      <Icon className="text-foreground size-5" />
+                    </div>
+                    <span className="text-muted-foreground mt-3 text-xs font-semibold">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="mt-2 text-sm font-semibold leading-snug">
+                      {tFlow(`steps.${step}.title`)}
+                    </h3>
+                    <p className="text-muted-foreground mt-1 text-xs leading-relaxed">
+                      {tFlow(`steps.${step}.description`)}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="divide-y divide-border lg:hidden">
+              {steps.map((step, i) => {
+                const Icon = stepIcons[i]
+                return (
+                  <div key={step} className="flex gap-4 bg-muted/20 p-5">
+                    <div className="bg-muted flex size-12 shrink-0 items-center justify-center">
+                      <Icon className="text-foreground size-5" />
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground text-xs font-semibold">
+                        {String(i + 1).padStart(2, '0')} · {tFlow(`steps.${step}.title`)}
+                      </p>
+                      <p className="text-muted-foreground mt-1 text-sm">
+                        {tFlow(`steps.${step}.description`)}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="border-t border-border bg-muted/20 p-5">
+              <p className="text-muted-foreground mb-3 text-center text-xs font-semibold uppercase tracking-wider">
+                {t('operationsStripLabel')}
+              </p>
+              <div className="box-muted grid grid-cols-2 divide-x divide-y divide-border/80 sm:grid-cols-4 sm:divide-y-0">
+                {stripKeys.map((key) => (
+                  <div
+                    key={key}
+                    className="flex items-center justify-center px-3 py-3 text-center text-xs font-medium sm:text-sm"
+                  >
+                    {t(`operationsStrip.${key}`)}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}

@@ -1,26 +1,28 @@
-import { Background } from '@/components/background';
-import { FAQ } from '@/components/blocks/faq';
-import { Features } from '@/components/blocks/features';
-import { Hero } from '@/components/blocks/hero';
-import { Logos } from '@/components/blocks/logos';
-import { Pricing } from "@/components/blocks/pricing";
-import { ResourceAllocation } from '@/components/blocks/resource-allocation';
-import { Testimonials } from '@/components/blocks/testimonials';
+import { Background } from '@/components/background'
+import { Contact } from '@/components/blocks/contact'
+import { FAQ } from '@/components/blocks/faq'
+import { Features } from '@/components/blocks/features'
+import { Hero } from '@/components/blocks/hero'
+import { LanguageSection } from '@/components/blocks/language-section'
+import { Operations } from '@/components/blocks/operations'
+import { Pricing } from '@/components/blocks/pricing'
+import { TrustStrip } from '@/components/blocks/trust-strip'
 
 export default function Home() {
   return (
     <>
-      <Background className='via-muted to-muted/80'>
+      <Background>
         <Hero />
-        <Logos />
+        <TrustStrip />
         <Features />
-        <ResourceAllocation />
+        <Operations />
       </Background>
-      <Testimonials />
-      <Background variant='bottom'>
+      <LanguageSection />
+      <Background variant="bottom">
         <Pricing />
         <FAQ />
+        <Contact />
       </Background>
     </>
-  );
+  )
 }

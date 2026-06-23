@@ -1,7 +1,7 @@
 {
-  "name": "mainline-nextjs-template",
-  "version": "1.2.0",
-  "author": "Shadcnblocks.com",
+  "name": "kokonaat-website",
+  "version": "1.0.0",
+  "description": "Kokonaat marketing website",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -31,6 +31,7 @@
     "lucide-react": "^0.545.0",
     "motion": "^12.23.24",
     "next": "^15.5.5",
+    "next-intl": "^4.13.0",
     "next-safe-action": "^8.0.11",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
