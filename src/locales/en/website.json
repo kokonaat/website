@@ -147,11 +147,56 @@
     "badge": "বাংলা + English"
   },
   "pricing": {
-    "title": "Pricing",
-    "subtitle": "Simple plans for growing shops.",
-    "comingSoon": "Coming Soon",
-    "comingSoonDescription": "We're preparing flexible plans for shop owners. Stay tuned — or start using Kokonaat for free today.",
-    "cta": "Start for free"
+    "title": "Simple, Transparent Pricing",
+    "subtitle": "Choose the plan that fits your shop. Upgrade or downgrade anytime.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "yearlySave": "Save 16%",
+    "taka": "৳",
+    "perMonth": "/month",
+    "perYear": "/year",
+    "free": "Free",
+    "ctaFree": "Start for free",
+    "cta": "Get started",
+    "popularBadge": "Most Popular",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "description": "Perfect for getting started with basic shop management.",
+        "monthlyPrice": "0",
+        "yearlyPrice": "0",
+        "features": [
+          "10 vendors & vendor-wise ledgers",
+          "10 customers & customer-wise ledgers",
+          "30 transactions",
+          "50 expense entries"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For growing shops that need more capacity and flexibility.",
+        "monthlyPrice": "999",
+        "yearlyPrice": "9,999",
+        "features": [
+          "Unlimited vendors & vendor-wise ledgers",
+          "Unlimited customers & customer-wise ledgers",
+          "1,000 transactions per month",
+          "Unlimited expense entries"
+        ]
+      },
+      "max": {
+        "name": "Max",
+        "description": "For high-volume businesses with large transaction needs.",
+        "monthlyPrice": "4,999",
+        "yearlyPrice": "49,999",
+        "features": [
+          "Unlimited vendors & vendor-wise ledgers",
+          "Unlimited customers & customer-wise ledgers",
+          "10,000 transactions per month",
+          "Unlimited expense entries"
+        ]
+      }
+    }
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -175,7 +220,7 @@
       },
       "5": {
         "question": "Is there a free plan?",
-        "answer": "You can sign up and start using Kokonaat for free. Paid plans are coming soon."
+        "answer": "Yes. The Free plan lets you manage up to 10 vendors, 10 customers, 30 transactions, and 50 expenses at no cost. Pro and Max plans unlock higher limits."
       }
     }
   },

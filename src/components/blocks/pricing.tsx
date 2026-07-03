@@ -1,12 +1,36 @@
-import { Sparkles } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
-import { Button } from '@/components/ui/button'
+import { PricingPlans } from '@/components/blocks/pricing-plans'
 
-const APP_URL = 'https://app.kokonaat.com'
+const planKeys = ['free', 'pro', 'max'] as const
 
 export async function Pricing() {
   const t = await getTranslations('pricing')
+
+  const plans = planKeys.map((key) => ({
+    key,
+    name: t(`plans.${key}.name`),
+    description: t(`plans.${key}.description`),
+    monthlyPrice: t(`plans.${key}.monthlyPrice`),
+    yearlyPrice: t(`plans.${key}.yearlyPrice`),
+    features: t.raw(`plans.${key}.features`) as string[],
+    popular: key === 'pro',
+    ctaText: key === 'free' ? t('ctaFree') : t('cta'),
+    ctaHref: 'https://app.kokonaat.com/sign-up',
+  }))
+
+  const labels = {
+    monthly: t('monthly'),
+    yearly: t('yearly'),
+    yearlySave: t('yearlySave'),
+    taka: t('taka'),
+    perMonth: t('perMonth'),
+    perYear: t('perYear'),
+    free: t('free'),
+    cta: t('cta'),
+    ctaFree: t('ctaFree'),
+    popularBadge: t('popularBadge'),
+  }
 
   return (
     <section id="pricing" className="py-16 lg:py-24">
@@ -16,20 +40,7 @@ export async function Pricing() {
           <p className="text-muted-foreground mt-3">{t('subtitle')}</p>
         </div>
 
-        <div className="box mx-auto mt-12 max-w-lg px-8 py-14 text-center">
-          <div className="bg-muted mx-auto mb-4 flex size-16 items-center justify-center">
-            <Sparkles className="text-foreground size-7" />
-          </div>
-          <span className="bg-foreground text-background inline-block px-4 py-1 text-xs font-semibold uppercase tracking-wider">
-            {t('comingSoon')}
-          </span>
-          <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
-            {t('comingSoonDescription')}
-          </p>
-          <Button className="mt-6" size="lg" asChild>
-            <a href={`${APP_URL}/sign-up`}>{t('cta')}</a>
-          </Button>
-        </div>
+        <PricingPlans labels={labels} plans={plans} />
       </div>
     </section>
   )
